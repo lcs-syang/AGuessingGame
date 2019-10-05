@@ -23,19 +23,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        // Make a object named 'synthesizer', which is an instance of the
-        // class 'AVSpeechSynthesizer'
-        let synthesizer = AVSpeechSynthesizer()
-        
-        // Make a string of what we want the computer to say
-        let message = "I'm thinking of a number between 1 and 100. Guess what it is."
-        
-        // Make an object named 'utterance', which is an instance of the class
-        // AVSpeechUtterance
-        let utterance = AVSpeechUtterance(string: message)
-        
-        // Speak the message
-        synthesizer.speak(utterance)
+        speak(message: "I'm thinking of a number between 1 and 100. Guess what it is."
+        )
         
         //Re[prt the target number to the console for testing purposes
         print("For testing purposes, the random number is \(targetNumber)")
@@ -53,13 +42,35 @@ class ViewController: UIViewController {
         
         //Give appropriate feedback to the user
         if guessNumber > targetNumber{
-            print("guess lower next time")
+            
+            speak(message: "guess lower next time")
+            
         } else if guessNumber < targetNumber{
-            print("guess higher next time")
+            
+            speak(message: "guess higher next time")
+            
         } else {
-            print("You are correct!")
+            
+            speak(message: "You are correct!")
+            
         }
     }
     
+    //A method that will speak whatever the message is provided
+    func speak(message: String)  {
+        // Make a object named 'synthesizer', which is an instance of the
+        // class 'AVSpeechSynthesizer'
+        let synthesizer = AVSpeechSynthesizer()
+        
+        // Make an object named 'utterance', which is an instance of the class
+        // AVSpeechUtterance
+        let utterance = AVSpeechUtterance(string: message)
+        
+        // Speak the message
+        synthesizer.speak(utterance)
+        
+        //print the message
+        print(message)
+    }
 }
 
